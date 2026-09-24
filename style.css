@@ -95,3 +95,14 @@ body {
   color: #8a6bb3;
   box-shadow: 0 2px 6px rgba(190, 160, 220, 0.25);
 }
+
+#how_to_play {
+  margin-top: 20px;
+  background: #fff9fd;
+  border: 2px dashed #ffc6e6;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.9em;
+  color: #6b5570;
+  line-height: 1.4;
+}
