@@ -22,18 +22,18 @@ class Item {
 
 // define some items
 const paper = new Item(1, "Paper");
-const paper_airplane = new Item(2, "Paper Airplane", [paper]);
 const paper_crane = new Item(5, "Paper Crane", [paper,paper]);
-const cloth = new Item(5, "Cloth");
-const stuffing = new Item(2, "Stuffing");
-const pillow = new Item(10, "Pillow", [cloth,stuffing]);
-const plushie = new Item(18, "Plushie", [cloth,cloth,stuffing]);
 const wood = new Item(5, "Wood");
 const iron = new Item(8, "Iron");
-const hammer = new Item(20, "Hammer", [iron, wood]);
+const copper_wire = new Item(8, "Copper Wire");
+const electromagnet = new Item(22, "Electromagnet",[iron,copper_wire]);
 const door = new Item(25, "Door",[wood,wood,iron]);
-const dog_house = new Item(60, "Dog House",[door,wood,pillow]);
-const dog_village = new Item(350, "Dog Village",[dog_house,dog_house,dog_house,dog_house,dog_house]);
+const electric_motor = new Item(65, "Electric Motor",[electromagnet,electromagnet,copper_wire]);
+const electric_bike = new Item(100, "Electric Bike",[electric_motor,copper_wire,iron]);
+const go_kart = new Item(110, "Electric Go Kart",[electric_motor,door,door,copper_wire]);
+const dog_house = new Item(60, "Dog House",[door,wood]);
+
+
 
 let money : number = 10;
 let inventory : Item[] = [];
