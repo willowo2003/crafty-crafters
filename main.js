@@ -24,10 +24,12 @@ const iron = new Item(8, "Iron");
 const copper_wire = new Item(8, "Copper Wire");
 const electromagnet = new Item(22, "Electromagnet", [iron, copper_wire]);
 const door = new Item(25, "Door", [wood, wood, iron]);
+const dog_house = new Item(60, "Dog House", [door, wood]);
 const electric_motor = new Item(65, "Electric Motor", [electromagnet, electromagnet, copper_wire]);
 const electric_bike = new Item(100, "Electric Bike", [electric_motor, copper_wire, iron]);
-const go_kart = new Item(110, "Electric Go Kart", [electric_motor, door, door, copper_wire]);
-const dog_house = new Item(60, "Dog House", [door, wood]);
+const wind_mill = new Item(100, "Wind Mill", [electric_motor, iron, iron, copper_wire]);
+const go_kart = new Item(160, "Electric Go Kart", [electric_motor, electric_motor, door, door, copper_wire]);
+// define our money and our inventory.
 let money = 10;
 let inventory = [];
 function get_item_from_drop_down() {
@@ -58,7 +60,7 @@ function update_display_text() {
     money_lable.textContent = "$" + String(money);
     // then update inventory
     const inventory_lable = document.getElementById("inventory_lable");
-    if (inventory) {
+    if (inventory.length !== 0) {
         inventory_lable.textContent = inventory.map(item => item.name).join(", ");
     }
     else {
