@@ -30,7 +30,7 @@ const iron = new Item(8, "Iron");
 const hammer = new Item(20, "Hammer", [iron, wood]);
 const door = new Item(25, "Door", [wood, wood, iron]);
 const dog_house = new Item(60, "Dog House", [door, wood, pillow]);
-const dog_village = new Item(300, "Dog Village", [dog_house, dog_house, dog_house, dog_house, dog_house]);
+const dog_village = new Item(350, "Dog Village", [dog_house, dog_house, dog_house, dog_house, dog_house]);
 let money = 10;
 let inventory = [];
 function get_item_from_drop_down() {
@@ -62,7 +62,7 @@ function update_display_text() {
     // then update inventory
     const inventory_lable = document.getElementById("inventory_lable");
     if (inventory) {
-        inventory_lable.textContent = inventory.map(item => item.name).toString();
+        inventory_lable.textContent = inventory.map(item => item.name).join(", ");
     }
     else {
         inventory_lable.textContent = "You have no items...";
@@ -85,16 +85,18 @@ function update_display_text() {
     }
 }
 function buy() {
+    // this is the simple function for buying items
     const selected_item = get_item_from_drop_down();
     if (selected_item !== null) {
         if (money >= selected_item.price) {
             money -= selected_item.price;
             inventory.push(selected_item);
         }
+        update_display_text();
     }
-    update_display_text();
 }
 function sell() {
+    // this is the simple function for selling items
     const selected_item = get_item_from_drop_down();
     if (selected_item !== null) {
         if (inventory.includes(selected_item)) {
@@ -114,7 +116,7 @@ function craft() {
             for (var ingredient of selected_item.recipe) {
                 if (!dummy_inventory.includes(ingredient)) { // if the item is not found in the
                     have_items_check = false;
-                    break;
+                    break; //we exit the loop i
                 }
                 else {
                     dummy_inventory.splice(dummy_inventory.indexOf(ingredient), 1);

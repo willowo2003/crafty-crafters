@@ -1,5 +1,4 @@
 
-
 // we have a item class for our crafting stuffs
 class Item {
   price: number;
@@ -18,12 +17,10 @@ class Item {
     Item.all_items.push(this); //  we need to add to all_items for shop keeping
     this.id = Item.amount_of_items;
     Item.amount_of_items += 1;
-    console.log(this.name);
-
   }
 }
-// define some items
 
+// define some items
 const paper = new Item(1, "Paper");
 const paper_airplane = new Item(2, "Paper Airplane", [paper]);
 const paper_crane = new Item(5, "Paper Crane", [paper,paper]);
@@ -36,7 +33,7 @@ const iron = new Item(8, "Iron");
 const hammer = new Item(20, "Hammer", [iron, wood]);
 const door = new Item(25, "Door",[wood,wood,iron]);
 const dog_house = new Item(60, "Dog House",[door,wood,pillow]);
-const dog_village = new Item(300, "Dog Village",[dog_house,dog_house,dog_house,dog_house,dog_house]);
+const dog_village = new Item(350, "Dog Village",[dog_house,dog_house,dog_house,dog_house,dog_house]);
 
 let money : number = 10;
 let inventory : Item[] = [];
@@ -73,7 +70,7 @@ function update_display_text():void {
   // then update inventory
   const inventory_lable = document.getElementById("inventory_lable") as HTMLElement;
   if (inventory) {
-    inventory_lable.textContent = inventory.map(item => item.name).toString();
+    inventory_lable.textContent = inventory.map(item => item.name).join(", ");
   } else {
     inventory_lable.textContent = "You have no items...";
   }
@@ -93,16 +90,18 @@ function update_display_text():void {
   }
 }
 function buy():void{
+  // this is the simple function for buying items
   const selected_item = get_item_from_drop_down()
   if (selected_item !==null) {
     if (money >= selected_item.price) {
       money -= selected_item.price;
       inventory.push(selected_item);
     }
+    update_display_text();
   }
-  update_display_text();
 }
 function sell():void{
+  // this is the simple function for selling items
   const selected_item = get_item_from_drop_down();
   if (selected_item !==null) {
     if (inventory.includes(selected_item)) {
@@ -122,7 +121,7 @@ function craft():void {
       for (var ingredient of selected_item.recipe) {
         if (!dummy_inventory.includes(ingredient)) {// if the item is not found in the
           have_items_check=false;
-          break;
+          break;//we exit the loop i
         } else {
           dummy_inventory.splice(dummy_inventory.indexOf(ingredient), 1);
         }
@@ -141,6 +140,7 @@ function craft():void {
   }
   update_display_text();
 }
+
 // here we bind all out buttons to our functions
 const buy_button = document.getElementById('buy_button') as HTMLButtonElement
 buy_button?.addEventListener('click', buy);
