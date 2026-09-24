@@ -14,7 +14,6 @@ class Item {
         Item.all_items.push(this); //  we need to add to all_items for shop keeping
         this.id = Item.amount_of_items;
         Item.amount_of_items += 1;
-        console.log(this.name);
     }
 }
 // define some items
