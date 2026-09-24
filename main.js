@@ -19,15 +19,18 @@ class Item {
 }
 // define some items
 const paper = new Item(1, "Paper");
-const wood = new Item(3, "Wood");
-const stone = new Item(3, "Stone");
-const iron = new Item(5, "Iron");
-const cloth = new Item(5, "Cloth");
 const paper_airplane = new Item(2, "Paper Airplane", [paper]);
-const hammer = new Item(10, "Hammer", [iron, wood]);
-const knife = new Item(10, "Knife", [iron, wood]);
-const training_dummy = new Item(12, "Training Dummy", [wood, wood, stone]);
-const pillow = new Item(10, "Pillow", [cloth]);
+const paper_crane = new Item(5, "Paper Crane", [paper, paper]);
+const cloth = new Item(5, "Cloth");
+const stuffing = new Item(2, "Stuffing");
+const pillow = new Item(10, "Pillow", [cloth, stuffing]);
+const plushie = new Item(18, "Plushie", [cloth, cloth, stuffing]);
+const wood = new Item(5, "Wood");
+const iron = new Item(8, "Iron");
+const hammer = new Item(20, "Hammer", [iron, wood]);
+const door = new Item(25, "Door", [wood, wood, iron]);
+const dog_house = new Item(60, "Dog House", [door, wood, pillow]);
+const dog_village = new Item(300, "Dog Village", [dog_house, dog_house, dog_house, dog_house, dog_house]);
 let money = 10;
 let inventory = [];
 function get_item_from_drop_down() {
@@ -107,11 +110,11 @@ function craft() {
         if (selected_item.recipe !== undefined) {
             //now we do a fancy thing i made to check if we have the ingredients
             let have_items_check = true;
-            let dummy_inventory = inventory.slice();
+            let dummy_inventory = inventory.slice(); // get copy
             for (var ingredient of selected_item.recipe) {
-                if (dummy_inventory.indexOf(ingredient) == -1) { // if the item is not found in the
-                    break;
+                if (!dummy_inventory.includes(ingredient)) { // if the item is not found in the
                     have_items_check = false;
+                    break;
                 }
                 else {
                     dummy_inventory.splice(dummy_inventory.indexOf(ingredient), 1);

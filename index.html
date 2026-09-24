@@ -1,19 +1,30 @@
 <!doctype html>
+<!This html file wast created by and AI>
 <html lang="en">
   <head>
-    <div id="infoBox">Welcome to Crafty Crafters!</div>
+    <meta charset="UTF-8" />
+    <title>Crafty Crafters</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <<body>
-    <div id="money_lable">0$</div>
+  <body>
+    <div id="infoBox">Welcome to Crafty Crafters!</div>
+
+    <div id="money_lable">$0</div>
     <div id="inventory_lable">loading..</div>
-    <div id="inventory_lable">Shop:</div>
-    <select id="shop_drop_down">
-    </select>
-    <button type="button", id="buy_button">Buy</button>
-    <button type="button", id="sell_button">Sell</button>
-    <button type="button", id="craft_button">Craft</button>
+
+    <div class="shop-section">
+      <div id="shop_lable">Shop:</div>
+      <select id="shop_drop_down"></select>
+
+      <div class="button-row">
+        <button type="button" id="buy_button">Buy</button>
+        <button type="button" id="sell_button">Sell</button>
+        <button type="button" id="craft_button">Craft</button>
+      </div>
+    </div>
+
     <div id="craft_lable">No Recipe found.</div>
 
+    <script src="main.js"></script>
   </body>
 </html>
-<script src="main.js"></script>
